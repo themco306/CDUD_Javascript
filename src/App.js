@@ -9,6 +9,7 @@ import Footer from './scenes/global/Footer';
 import Loading from './components/Loading';
 import { Provider } from 'react-redux';
 import Store from './state/Store';
+import CategorySelect from './components/CategorySelect';
 function App() {
   return (
    <div>
@@ -21,6 +22,7 @@ function App() {
       <Outlet/>
       <Footer/>
     </div>
+    <CategorySelect/>
     <Copyright/>
     </Provider>
    </div>

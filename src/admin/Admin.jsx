@@ -1,6 +1,7 @@
 import React from "react";
 import TopNav from "./components/TopNav";
 import Menu from "./components/Menu";
+import { Outlet } from "react-router-dom";
 
 export default function Admin() {
   var ss=document.createElement("link")
@@ -25,7 +26,9 @@ export default function Admin() {
         <section className="content">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-12"></div>
+              <div className="col-12">
+                <Outlet/>
+              </div>
             </div>
           </div>
         </section>

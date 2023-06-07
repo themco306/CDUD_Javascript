@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Menu() {
   return (
@@ -24,28 +25,16 @@ export default function Menu() {
               <a href="#st" className="nav-link">
                 <i className="nav-icon fas fa-table" />
                 <p>
-                  Tables
+                  Quản lý
                   <i className="fas fa-angle-left right" />
                 </p>
               </a>
               <ul className="nav nav-treeview">
                 <li className="nav-item">
-                  <a href="../tables/simple.html" className="nav-link">
+                  <Link to="/admin/product" className="nav-link">
                     <i className="far fa-circle nav-icon" />
-                    <p>Simple Tables</p>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="../tables/data.html" className="nav-link">
-                    <i className="far fa-circle nav-icon" />
-                    <p>DataTables</p>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="../tables/jsgrid.html" className="nav-link">
-                    <i className="far fa-circle nav-icon" />
-                    <p>jsGrid</p>
-                  </a>
+                    <p>Products</p>
+                  </Link>
                 </li>
               </ul>
             </li>
