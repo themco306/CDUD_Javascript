@@ -25,8 +25,8 @@ export default function AppBar() {
               </div>
               <a href="index.html"> <span className="icon-home" /> Home</a> 
               <a href="#ST"><span className="icon-user" /> My Account</a> 
-              <a href="register.html"><span className="icon-edit" /> Free Register </a> 
-              <a href="contact.html"><span className="icon-envelope" /> Contact us</a>
+              <Link to="/register"><span className="icon-edit" />  Register </Link> 
+              <Link to="/login"><span className="icon-signin" /> Login</Link>
               <Link to="/cart"><span className="icon-shopping-cart" /> {totalItems} Item(s) - <span className="badge badge-warning"> {total.toLocaleString('vi-VN')}</span></Link>
             </div>
           </div>

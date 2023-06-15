@@ -6,8 +6,14 @@ export const cartSlice = createSlice({
         items:[]
     },
     reducers:{
-        addToCart:(state,action)=>{
-            state.items=[...state.items, action.payload.item]
+        addToCart: (state, action) => {
+            const { item } = action.payload;
+            const existingItemIndex = state.items.findIndex((i) => i.id === item.id);
+            if (existingItemIndex === -1) {
+              state.items.push({ ...item, count: 1 });
+            } else {
+              state.items[existingItemIndex].count++;
+            }
         },
         removeFromCart:(state,action)=>{
             state.items=state.items.filter((item)=>{

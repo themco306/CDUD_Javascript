@@ -17,6 +17,8 @@ import AdminProductBox from './admin/scenes/products/AdminProductBox';
 import AdminProductDetail from './admin/scenes/products/AdminProductDetail';
 import AdminProductEdit from './admin/scenes/products/AdminProductEdit';
 import AdminProductAdd from './admin/scenes/products/AdminProductAdd';
+import Login from './auth/Login';
+import Register from './auth/Register';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
       {
         index:true,
         element: <Home />
+      },
+      {
+        path:'login',
+        element:<Login/>
+      },
+      {
+        path:'register',
+        element:<Register/>
       },
       {
         path:'product',

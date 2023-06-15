@@ -3,7 +3,7 @@ import PictureBox from "./PictureBox";
 import Loading from "../../components/Loading";
 import categoryApi from "../../API/categoryApi";
 import productApi from "../../API/productApi";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch } from 'react-redux'
 import { addToCart } from "../../state/CartSlice";
 export default function ProductDetail() {
@@ -36,11 +36,11 @@ export default function ProductDetail() {
       </div>
     </div>
     <p>
-      <button type="submit" className="shopBtn" onClick={()=>dispatch(addToCart({
+      <Link to="#st" className="shopBtn" onClick={()=>dispatch(addToCart({
           item:{...product,count:1}
         }))}>
         <span className=" icon-shopping-cart" /> Add to cart
-      </button>
+      </Link>
     </p>
   </form></div>
   var myView3=loading===true?<Loading/>:<div><p>

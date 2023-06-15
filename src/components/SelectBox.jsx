@@ -1,17 +1,25 @@
-import React from 'react'
+import React from 'react';
 
 export default function SelectBox(props) {
-    var name=props.name
-    var data=props.data
-    var defaultValue=props.defaultValue
-    var myView=data.map(dataItem=>{
-        return (
-            <option value={dataItem.value}>{dataItem.label}</option>
-    )
-    })
+  const { name, data, defaultValue, onChange } = props;
+  const handleAddChange=props.handleAddChange
+  const myView = data.map(dataItem => (
+    <option key={dataItem.value} value={dataItem.value}>
+      {dataItem.label}
+    </option>
+  ));
+
+  const handleOnChange = event => {
+    const value = event.target.value;
+    onChange(value);
+    if(handleAddChange)
+      handleAddChange(event)
+  };
+
   return (
-    <select name={name} value={defaultValue}>
-        {myView}
+    <select name={name} value={defaultValue} onChange={handleOnChange}>
+      <option value={0}>........</option>
+      {myView}
     </select>
-  )
+  );
 }
