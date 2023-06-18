@@ -99,6 +99,32 @@ const router = createBrowserRouter([
           }
         ]
       },
+      {
+        path:'/admin/category',
+        element:<AdminProduct/>,
+        children:[
+          {
+            index:true,
+            element: <AdminProductBox />
+          },
+          {
+            path:'/admin/category/page/:pageNum',
+            element: <AdminProductBox />
+          },
+          {
+            path:'/admin/category/:id',
+            element: <AdminProductDetail />
+          },
+          {
+            path:'/admin/category/add',
+            element:<AdminProductAdd/>
+          },
+          {
+            path:'/admin/category/edit/:id',
+            element:<AdminProductEdit/>
+          }
+        ]
+      },
      
   
     ]

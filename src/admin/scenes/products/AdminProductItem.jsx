@@ -20,7 +20,7 @@ export default function AdminProductItem(props) {
 
                   <td>{product.attributes.price}</td>
                   <td>{myView}</td>
-                  <td style={{ fontSize:'1.2em',display:'flex', justifyContent:'space-around' }} ><i className="icon-eye-open" style={{ cursor:'pointer' }}></i><Link to={'/admin/product/edit/'+product.id}><i className="icon-edit" style={{ cursor:'pointer' }}></i></Link><i className="icon-trash" name={product.id} onClick={handleDelete} style={{ cursor:'pointer' }}></i></td>
+                  <td style={{ fontSize:'1.2em',display:'flex', justifyContent:'space-around' }} ><Link to={'/admin/product/'+product.id}><i className="icon-eye-open" style={{ cursor:'pointer' }}></i></Link><Link to={'/admin/product/edit/'+product.id}><i className="icon-edit" style={{ cursor:'pointer' }}></i></Link><i className="icon-trash" name={product.id} onClick={handleDelete} style={{ cursor:'pointer' }}></i></td>
                 </tr>
   )
 }

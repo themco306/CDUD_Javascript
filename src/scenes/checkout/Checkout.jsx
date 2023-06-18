@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Checkout() {
+  
   return (
     <div>
       <table className="table table-bordered">
@@ -12,33 +13,33 @@ export default function Checkout() {
             <td>
               <form className="form-horizontal">
                 <div className="control-group">
-                  <label className="span2 control-label" htmlFor="inputEmail">
+                  <label className="span2 control-label" htmlFor="inputName">
                     Tên
                   </label>
                   <div className="controls">
-                    <input type="text" placeholder="Country" />
+                    <input type="text" placeholder="" />
                   </div>
                 </div>
                 <div className="control-group">
                   <label
                     className="span2 control-label"
-                    htmlFor="inputPassword"
+                    htmlFor="inputAddress"
                   >
                     Địa chỉ
                   </label>
                   <div className="controls">
-                    <input type="password" placeholder="Password" />
+                    <input type="text" placeholder="" />
                   </div>
                 </div>
                 <div className="control-group">
                   <label
                     className="span2 control-label"
-                    htmlFor="inputPassword"
+                    htmlFor="inputPhone"
                   >
                     Số điện thoại
                   </label>
                   <div className="controls">
-                    <input type="password" placeholder="Password" />
+                    <input type="text" placeholder="" />
                   </div>
                 </div>
                 <div className="control-group">

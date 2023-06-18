@@ -71,7 +71,7 @@ export default function CartMenu() {
         </tbody>
       </table>
       <a href="products.html" className="shopBtn btn-large"><span className="icon-arrow-left" /> Continue Shopping </a>
-      <a href="login.html" className="shopBtn btn-large pull-right">Next <span className="icon-arrow-right" /></a>
+      <a href="/checkout" className="shopBtn btn-large pull-right">Check out <span className="icon-arrow-right" /></a>
     </div>
 
   )

@@ -1,26 +1,30 @@
 import React, { useRef } from 'react';
 
 export default function InputPassword(props) {
-  const passwordRef = useRef(null);
   const label=props.label
   const register=props.register
   const validateConfirmPassword=props.validateConfirmPassword
-  const handleTogglePassword = () => {
-    const password = passwordRef.current;
+  const handleTogglePassword = (e) => {
+    const password=e.target.previousElementSibling
     const type = password.type === 'password' ? 'text' : 'password';
     password.type = type;
+    e.target.classList.toggle('fa-eye-slash')
   };
 
   return (
     <>
-      <input
-      {...register(label,{validate:validateConfirmPassword, required:true,pattern:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$/})} 
+     <input
+        {...register(label, {
+          validate: validateConfirmPassword,
+          required: "true",
+          pattern:
+            /^(?=.{10,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?\W).*$/,
+        })}
         type="password"
         className="span3"
-        placeholder="Password1"
-        ref={passwordRef}
-        
+        placeholder="Password"
       />
+      
       <i
         className="fa fa-eye"
         style={{ marginLeft: '-30px', cursor: 'pointer', verticalAlign: '5px' }}

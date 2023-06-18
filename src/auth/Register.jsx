@@ -2,15 +2,41 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import InputPassword from "./InputPassword";
 
+import { useDispatch } from 'react-redux'
+import { setCurrent, setToken } from "../state/UserSlice";
+import { userApi } from "../API/userApi";
+import {ToastContainer,toast} from 'react-toastify'
+import { useState } from "react";
+import LoadingRegister from "../components/LoadingRegister";
 export default function Register() {
 
-  const {register,handleSubmit,getValues,formState:{errors}}= useForm()
+  const {reset,register,handleSubmit,getValues,formState:{errors}}= useForm()
+  const dispatch=useDispatch()
+  const [loading,setLoading]=useState()
   const validateConfirmPassword=(value)=>{
     var {password}=getValues()
     return value===password
   }
+  var myView=loading==true?<LoadingRegister/>:''
   const onSubmit=(data)=>{
-    alert('call api re')
+    const callRegister=async (data)=>{
+    try {
+      setLoading(true)
+      const response=await userApi.register(data)
+      console.log(response)
+      dispatch(setCurrent(response.data.user))
+      dispatch(setToken(response.data.jwt))
+      localStorage.setItem('user',JSON.stringify(response.data.user))
+      localStorage.setItem('token',JSON.stringify(response.data.jwt))
+      toast.success("Register success")
+      setLoading(false)
+      reset()
+    } catch (error) {
+      toast.error("Register Error: "+ error)
+    }
+     
+    }
+    callRegister(data)
   }
   return (
     <div className="">
@@ -49,15 +75,16 @@ export default function Register() {
               Password <sup>*</sup>
             </label>
             <div className="controls">
-            <InputPassword label='password' register={register} validateConfirmPassword={()=>true}/>
-            {errors.password?.type === "required" && (
-              <p style={{ color: "red" }}>Password is required</p>
-            )}
-            {errors.password?.type === "pattern" && (
-              <p style={{ color: "red" }}>
-                Password must contain at least one uppercase letter, one lowercase letter, one number, and be between 8 and 30 characters long.
-              </p>
-            )}
+            <InputPassword label="password" register={register} validateConfirmPassword={() => {return true}} />
+              {errors.password?.type === "required" && (
+                <p style={{ color: "red" }}>Password is required</p>
+              )}
+              {errors.password?.type === "pattern" && (
+                <p style={{ color: "red" }}>
+                  Password at least 8 character, 1 uppcase, 1 lowercase, 1
+                  number and 1 specialCharacter
+                </p>
+              )}
             </div>
           </div>
           <div className="control-group">
@@ -81,6 +108,7 @@ export default function Register() {
           </div>
           <div className="control-group">
             <div className="controls">
+              {myView}
               <input
                 type="submit"
                 name="submitAccount"
@@ -91,6 +119,7 @@ export default function Register() {
           </div>
         </form>
       </div>
+      
     </div>
   );
 }

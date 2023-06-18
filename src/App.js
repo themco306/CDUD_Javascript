@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import Store from './state/Store';
 import CategorySelect from './components/CategorySelect';
 import FileUpload from './components/FileUpload';
+import { ToastContainer } from 'react-toastify';
 function App() {
   return (
    <div>
@@ -22,8 +23,8 @@ function App() {
       <NavBar/>
       <Outlet/>
       <Footer/>
+      <ToastContainer/>
     </div>
-    <FileUpload/>
     <Copyright/>
     </Provider>
    </div>

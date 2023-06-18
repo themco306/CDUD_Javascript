@@ -7,14 +7,14 @@ export default function PictureBox(props) {
     if(key===0) return(<div className="item active">
     <a href="#st">
       {" "}
-      <img src={AppUrl.ImageURL + image.attributes.url} alt='' style={{ width: "100%" }} />
+      <img className="img-fluid" src={AppUrl.ImageURL + image.attributes.url} alt='' style={{ width: "100%" }} />
     </a>
   </div>)
   else
     return(<div className="item">
     <a href="#st">
       {" "}
-      <img src={AppUrl.ImageURL + image.attributes.url} alt='' style={{ width: "100%" }} />
+      <img className="img-fluid" src={AppUrl.ImageURL + image.attributes.url} alt='' style={{ width: "100%" }} />
     </a>
   </div>)
   }

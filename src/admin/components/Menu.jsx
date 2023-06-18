@@ -36,6 +36,12 @@ export default function Menu() {
                     <p>Products</p>
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link to="/admin/category" className="nav-link">
+                    <i className="far fa-circle nav-icon" />
+                    <p>Categorys</p>
+                  </Link>
+                </li>
               </ul>
             </li>
           </ul>

@@ -1,7 +1,36 @@
 import React from "react";
 import InputPassword from "./InputPassword";
-
+import { useForm } from "react-hook-form";
+import {ToastContainer,toast} from 'react-toastify'
+import { useState } from "react";
+import LoadingRegister from "../components/LoadingRegister";
+import { useDispatch } from 'react-redux'
+import { setCurrent, setToken } from "../state/UserSlice";
+import { userApi } from "../API/userApi";
 export default function Login() {
+  const {register,handleSubmit,getValues,formState:{errors}}= useForm()
+  const [loading,setLoading]=useState()
+  const dispatch=useDispatch()
+  var myView=loading==true?<LoadingRegister/>:''
+  const onSubmit=(data)=>{
+    const callLogin=async (data)=>{
+    try {
+      setLoading(true)
+      const response=await userApi.login(data)
+      console.log(response)
+      dispatch(setCurrent(response.data.user))
+      dispatch(setToken(response.data.jwt))
+      localStorage.setItem('user',JSON.stringify(response.data.user))
+      localStorage.setItem('token',JSON.stringify(response.data.jwt))
+      toast.success("Login success")
+      setLoading(false)
+    } catch (error) {
+      toast.error("Login Error: "+ error)
+    }
+     
+    }
+    callLogin(data)
+  }
   return (
     <div className="">
       <ul className="breadcrumb">
@@ -17,13 +46,15 @@ export default function Login() {
         <div className="span4">
           <div className="well">
             <h5>ALREADY REGISTERED ?</h5>
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="control-group">
                 <label className="control-label" htmlFor="inputUser">
                   User
                 </label>
                 <div className="controls">
-                  <input className="span3" type="text" placeholder="User" />
+                <input {...register('identifier',{required:true,minLength:2})} type="text" id="inputUsername" placeholder="User name" />
+             {errors.identifier?.type === "required"&&<p style={{color:'red'}}>username is required </p>}
+             {errors.identifier?.type === "minLength"&&<p style={{color:'red'}}>username must have at least 2 character </p>}
                 </div>
               </div>
               <div className="control-group">
@@ -31,11 +62,15 @@ export default function Login() {
                   Password
                 </label>
                 <div className="controls">
-                  <InputPassword/>
+                <InputPassword label='password' register={register} validateConfirmPassword={()=>true}/>
+            {errors.password?.type === "required" && (
+              <p style={{ color: "red" }}>Password is required</p>
+            )}
                 </div>
               </div>
               <div className="control-group">
                 <div className="controls">
+                  {myView}
                   <button type="submit" className="defaultBtn">
                     Sign in
                   </button>{" "}
@@ -45,6 +80,7 @@ export default function Login() {
             </form>
           </div>
         </div>
+
       </div>
     </div>
   );
